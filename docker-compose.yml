@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: rubric-video
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-change-this-to-a-random-secret}
+      - DB_PATH=/app/data/rubric.db
+      - UPLOADS_DIR=/app/uploads

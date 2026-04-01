@@ -46,6 +46,15 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', app: 'Ru-Bric Video Creator' });
 });
 
+// Serve client build in production
+if (process.env.NODE_ENV === 'production') {
+  const clientDist = path.resolve(__dirname, '../../client/dist');
+  app.use(express.static(clientDist));
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
+
 // Seed default owner
 seedOwner();
 
