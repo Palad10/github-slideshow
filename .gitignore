@@ -1,4 +1,9 @@
-_site/
-.sass-cache/
-.jekyll-metadata
-.bundle
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+uploads/
+*.db
+*.sqlite

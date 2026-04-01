@@ -1,13 +1,43 @@
-# Your GitHub Learning Lab Repository for Introducing GitHub
+# Ru-Bric Video Creator
 
-Welcome to **your** repository for your GitHub Learning Lab course. This repository will be used during the different activities that I will be guiding you through. See a word you don't understand? We've included an emoji 📖 next to some key terms. Click on it to see its definition.
+A Progressive Web App (PWA) for Ru-Bric Plumbing to create social media reels, videos, and ads.
 
-Oh! I haven't introduced myself...
+## Features
 
-I'm the GitHub Learning Lab bot and I'm here to help guide you in your journey to learn and master the various topics covered in this course. I will be using Issue and Pull Request comments to communicate with you. In fact, I already added an issue for you to check out.
+- **Multi-clip video assembly** — Upload multiple videos, pick the best moments, arrange on a timeline
+- **In-app recording** — Record directly from your phone's camera
+- **10 templates** — 5 organic (Before/After, Quick Tip, Promo, Team Spotlight, Testimonial) + 5 ad templates
+- **Ad creation mode** — CTAs, contact info bars, pricing callouts, urgency elements
+- **Text overlays** — Drag-to-position, custom fonts, colors, animations
+- **Filters** — 8 presets (Warm, Cool, B&W, Vivid, etc.)
+- **Background music** — Bundled royalty-free tracks
+- **Branding** — Ru-Bric logo auto-applied to all videos
+- **Multi-platform export** — YouTube Shorts, Instagram Reels, TikTok, Facebook, plus ad formats
+- **PWA** — Installable on phones, works offline
 
-![issue tab](https://lab.github.com/public/images/issue_tab.png)
+## Tech Stack
 
-I'll meet you over there, can't wait to get started!
+- **Client**: React 18 + Vite + TypeScript + Tailwind CSS + Zustand
+- **Server**: Express + TypeScript + SQLite (better-sqlite3 + drizzle-orm)
+- **Video**: Canvas API (preview) + FFmpeg (server-side export)
 
-This course is using the :sparkles: open source project [reveal.js](https://github.com/hakimel/reveal.js/). In some cases we’ve made changes to the history so it would behave during class, so head to the original project repo to learn more about the cool people behind this project.
+## Quick Start
+
+```bash
+npm install
+npm run dev
+```
+
+This starts both the client (http://localhost:5173) and server (http://localhost:3000).
+
+**Default login:**
+- Name: `Boss`
+- PIN: `1234`
+
+## Project Structure
+
+```
+client/     — React PWA (Vite)
+server/     — Express API + SQLite
+shared/     — Shared types & format presets
+```
