@@ -119,6 +119,30 @@ const TEMPLATES: TemplateItem[] = [
       defaultContactBar: null,
     },
   },
+  {
+    id: 'time-lapse',
+    name: 'Time-Lapse',
+    category: 'organic',
+    description: 'Show a job from start to finish in a sped-up time-lapse',
+    color: '#D4A534',
+    config: {
+      clipSlots: [
+        { label: 'Time-lapse footage (full job)', suggestedDuration: 15, required: true },
+        { label: 'Finished result close-up', suggestedDuration: 5, required: false },
+      ],
+      textOverlays: [
+        { text: 'TIME-LAPSE', x: 0.1, y: 0.08, fontSize: 52, fontFamily: 'Impact', color: '#D4A534', backgroundColor: 'rgba(0,0,0,0.7)', startTime: 0, endTime: 3, animation: 'scale-in' },
+        { text: '⏱️ Start to Finish', x: 0.1, y: 0.18, fontSize: 28, fontFamily: 'Inter', color: '#FFFFFF', startTime: 1, endTime: 4, animation: 'fade-in' },
+        { text: 'THE RESULT ⬇️', x: 0.15, y: 0.08, fontSize: 44, fontFamily: 'Impact', color: '#00CC66', startTime: 15, endTime: 20, animation: 'slide-up' },
+        { text: 'Ru-Bric Plumbing', x: 0.15, y: 0.85, fontSize: 28, fontFamily: 'Inter', color: '#D4A534', startTime: 0, endTime: 20, animation: 'fade-in' },
+      ],
+      suggestedDuration: 20,
+      defaultFilter: null,
+      adMode: false,
+      defaultCTA: null,
+      defaultContactBar: null,
+    },
+  },
   // AD TEMPLATES
   {
     id: 'service-promo-ad',

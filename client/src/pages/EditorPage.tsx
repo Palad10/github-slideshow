@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Download, ArrowLeft, Save } from 'lucide-react';
+import { Download, ArrowLeft, Save, Eye } from 'lucide-react';
 import { useProjectStore } from '../stores/project-store';
 import api from '../lib/api';
 import MediaBin from '../components/editor/MediaBin';
@@ -12,9 +12,18 @@ import FilterSelector from '../components/editor/FilterSelector';
 import MusicPicker from '../components/editor/MusicPicker';
 import BrandingPanel from '../components/editor/BrandingPanel';
 import AdModePanel from '../components/editor/AdModePanel';
+import FullPreview from '../components/editor/FullPreview';
+import RevisionPanel from '../components/editor/RevisionPanel';
 import type { MediaFileRef } from '../types';
 
 type EditorTab = 'clips' | 'text' | 'style' | 'ad';
+
+interface Revision {
+  id: string;
+  request: string;
+  applied: string[];
+  timestamp: number;
+}
 
 export default function EditorPage() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -24,6 +33,11 @@ export default function EditorPage() {
   const [activeTab, setActiveTab] = useState<EditorTab>('clips');
   const [clipPickerMedia, setClipPickerMedia] = useState<MediaFileRef | null>(null);
   const [saving, setSaving] = useState(false);
+
+  // Preview & Revision state
+  const [showPreview, setShowPreview] = useState(false);
+  const [showRevisionPanel, setShowRevisionPanel] = useState(false);
+  const [revisions, setRevisions] = useState<Revision[]>([]);
 
   useEffect(() => {
     if (!projectId) return;
@@ -98,6 +112,16 @@ export default function EditorPage() {
           <button
             onClick={() => {
               handleSave();
+              setShowPreview(true);
+            }}
+            className="btn-secondary text-sm py-1.5 px-3 flex items-center gap-1"
+          >
+            <Eye size={14} />
+            Preview
+          </button>
+          <button
+            onClick={() => {
+              handleSave();
               navigate(`/export/${projectId}`);
             }}
             className="btn-primary text-sm py-1.5 px-3 flex items-center gap-1"
@@ -154,6 +178,36 @@ export default function EditorPage() {
       {/* Clip picker modal */}
       {clipPickerMedia && (
         <ClipPicker media={clipPickerMedia} onClose={() => setClipPickerMedia(null)} />
+      )}
+
+      {/* Full Preview modal */}
+      {showPreview && (
+        <FullPreview
+          revisionCount={revisions.length}
+          onClose={() => setShowPreview(false)}
+          onApprove={() => {
+            setShowPreview(false);
+            handleSave();
+            navigate(`/export/${projectId}`);
+          }}
+          onRequestRevision={() => {
+            setShowPreview(false);
+            setShowRevisionPanel(true);
+          }}
+        />
+      )}
+
+      {/* Revision Panel */}
+      {showRevisionPanel && (
+        <RevisionPanel
+          revisions={revisions}
+          setRevisions={setRevisions}
+          onClose={() => setShowRevisionPanel(false)}
+          onPreview={() => {
+            setShowRevisionPanel(false);
+            setShowPreview(true);
+          }}
+        />
       )}
     </div>
   );
