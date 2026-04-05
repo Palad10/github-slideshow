@@ -51,8 +51,8 @@ export default function ClipPicker({ media, onClose }: Props) {
   const clipDuration = endTime - startTime;
 
   return (
-    <div className="fixed inset-0 bg-black/90 z-50 flex flex-col">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+    <div className="fixed inset-0 bg-black/90 z-50 flex flex-col overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 flex-shrink-0">
         <button onClick={onClose} className="p-1">
           <X size={24} />
         </button>
@@ -63,17 +63,18 @@ export default function ClipPicker({ media, onClose }: Props) {
         <div className="w-8" />
       </div>
 
-      <div className="flex-1 flex items-center justify-center bg-black">
+      <div className="flex-1 min-h-0 flex items-center justify-center bg-black p-2">
         <video
           ref={videoRef}
           src={media.url}
-          className="max-h-full max-w-full"
+          className="max-w-full object-contain rounded-lg"
+          style={{ maxHeight: '100%' }}
           controls
           playsInline
         />
       </div>
 
-      <div className="px-4 py-3 space-y-3 bg-brand-navy border-t border-white/10">
+      <div className="flex-shrink-0 px-4 py-3 space-y-3 bg-brand-navy border-t border-white/10 safe-bottom">
         <div className="flex items-center justify-between text-sm">
           <div>
             <span className="text-white/50">In: </span>

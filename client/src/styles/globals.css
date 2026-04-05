@@ -16,6 +16,10 @@
     scrollbar-width: thin;
     scrollbar-color: #7B2D8E #1A1A4E;
   }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+  }
 }
 
 @layer components {
