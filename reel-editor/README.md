@@ -108,7 +108,12 @@ Instagram account switched to a **Business/Creator** account and linked to that
 Page (Instagram app → Settings → Business tools → Connect a Facebook Page).
 
 1. Go to [developers.facebook.com](https://developers.facebook.com) → **My Apps
-   → Create App** → type **Business**. Name it e.g. "RUBRIC ReelForge".
+   → Create App**. Name it e.g. "RUBRIC ReelForge". On the **Use cases** screen
+   check both **Manage messaging & content on Instagram** and **Manage
+   everything on your Page**, connect (or skip) a business portfolio, and create
+   the app. If the Instagram use case asks about login, choose **Facebook Login
+   for Business**, not "Instagram login". (Older accounts may see an app *type*
+   picker instead — choose **Business** there.)
 2. In the app dashboard, open **Tools → Graph API Explorer**:
    - In "Permissions" add: `pages_show_list`, `pages_manage_posts`,
      `pages_read_engagement`, `instagram_basic`, `instagram_content_publish`.
